@@ -4,11 +4,21 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scroll-behavior: initial;
 }
 body{
     width: 100%;
     overflow-x: hidden;
 
+
+}
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.menu a{
+    text-decoration: none;
+    
 }
 
 @keyframes animateDown{
