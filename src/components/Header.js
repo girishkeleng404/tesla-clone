@@ -1,24 +1,32 @@
 import React,{useState} from "react";
 import styled from "styled-components";
-import MenuIcon from '@mui/icons-material/Menu';
+// import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { Translate } from "@material-ui/icons";
+import { selectCars } from "../features/carSlice/carSlice";
+import { useSelector } from "react-redux";
+
 
 const Header = () => {
  
   const [burgerStatus,setBurgerStatus] = useState(false);
 
+  const cars = useSelector(selectCars)
+  console.log(cars);
   return (
+
     <Container>
       <a href="https://www.tesla.com/">
         <img src="/images/logo.svg" alt="" />
       </a>
 
       <Menu className="menu">
-        <a href="https://www.tesla.com/">Model S</a>
-        <a href="https://www.tesla.com/">Model 3</a>
-        <a href="https://www.tesla.com/">Model X</a>
-        <a href="https://www.tesla.com/">Model Y</a>
+        {cars && cars.map((car, index) =>(
+          <a key={index} href="#">{car}</a>
+          
+          ))}
+        
+      
         <a href="https://www.tesla.com/">Solar Panels</a>
         <a href="https://www.tesla.com/">Solar Roof</a>
       </Menu>
@@ -43,20 +51,21 @@ const Header = () => {
             <CustomClose onClick={()=> setBurgerStatus(false)} />
 
           </CloseWrapper>
+
+          {cars && cars.map((car, index) =>(
           
-          <li><a href="https://www.tesla.com/">Model S</a></li>
-          <li><a href="https://www.tesla.com/">Model 3</a></li>
-          <li><a href="https://www.tesla.com/">Model X</a></li>
-          <li><a href="https://www.tesla.com/">Model Y</a></li>
-          <li><a href="https://www.tesla.com/">Solar Roof</a></li>
-          <li><a href="https://www.tesla.com/">Solar Panels</a></li>
-          <li><a href="https://www.tesla.com/">Existing inventory</a></li>
-          <li><a href="https://www.tesla.com/">Used inventory</a></li>
-          <li><a href="https://www.tesla.com/">Trad-In</a></li>
-          <li><a href="https://www.tesla.com/">Test Drive</a></li>
-          <li><a href="https://www.tesla.com/">Insurance</a></li>
-          <li><a href="https://www.tesla.com/">Powerwall</a></li>
-          <li><a href="https://www.tesla.com/">Powerwall</a></li>
+            <li key={index}><a href="#">{car}</a></li>
+          ))}
+        
+          <li><a href="#">Solar Roof</a></li>
+          <li><a href="#">Solar Panels</a></li>
+          <li><a href="#">Existing inventory</a></li>
+          <li><a href="#">Used inventory</a></li>
+          <li><a href="#">Trad-In</a></li>
+          <li><a href="#">Test Drive</a></li>
+          <li><a href="#">Insurance</a></li>
+          <li><a href="#">Powerwall</a></li>
+         
         </BurgerNav>
 
 
